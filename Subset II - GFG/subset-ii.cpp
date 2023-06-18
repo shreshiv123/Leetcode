@@ -8,24 +8,27 @@ using namespace std;
 // User function Template for C++
 
 class Solution {
- void func(int ind,vector<vector<int>> &ans,vector<int>& nums,vector<int> temp){
+    void solve(int i,vector<int>& nums,vector<int> &ds,vector<vector<int>> &ans){
+        
+        
+            ans.push_back(ds);
+            
+        for(int j=i;j<nums.size();j++){
+            if(j>i && nums[j]==nums[j-1]) continue;
+            ds.push_back(nums[j]);
+            solve(j+1,nums,ds,ans);
+            ds.pop_back();
+        }
+    }
 
-         ans.push_back(temp);
-         
-     for(int i=ind;i<nums.size();i++){
-         if(i!=ind && nums[i]==nums[i-1]) continue;
-         temp.push_back(nums[i]);
-         func(i+1,ans,nums,temp);
-         temp.pop_back();
-     }
- }
   public:
     vector<vector<int>> printUniqueSubsets(vector<int>& nums) {
-        vector<vector<int>> ans;
+        // Write your code here
         sort(nums.begin(),nums.end());
-        vector<int> temp;
-        func(0,ans,nums,temp);
-        return ans;
+         vector<vector<int>> ans;
+         vector<int> ds;
+         solve(0,nums,ds,ans);
+         return ans;
     }
 };
 
