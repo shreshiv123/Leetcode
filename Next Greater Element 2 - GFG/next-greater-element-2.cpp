@@ -5,10 +5,11 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+  
   public:
     vector<int> nextGreaterElement(int N, vector<int>& arr) {
         int n=arr.size();
-        vector<long long> ans(2*n,-1);
+        vector<int> ans(n,-1);
         stack<long long> st;
         for(int i= 2*n-1;i>=0;i--){
             while(!st.empty() && st.top()<=arr[i%n]){
@@ -17,10 +18,11 @@ class Solution {
             if(!st.empty()) ans[i%n]=st.top();
             st.push(arr[i%n]);
         }
-        vector<int>ans1;
-        for(int i=0;i<n;i++) ans1.push_back(ans[i]);
-        return ans1;
+        /*vector<int>ans1;
+        for(int i=0;i<n;i++) ans1.push_back(ans[i]);*/
+        return ans;
     }
+
 };
 
 //{ Driver Code Starts.
