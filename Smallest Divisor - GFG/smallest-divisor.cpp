@@ -27,7 +27,7 @@ class Solution {
        int ans=1e9;
        while(s<=e){
            if(isPossible(mid,K,nums)){
-               ans=min(ans,mid);
+              ans=mid;
                e=mid-1;
            }
            else s=mid+1;
