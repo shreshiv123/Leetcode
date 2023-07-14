@@ -9,11 +9,11 @@ public:
         // Code here 
         int n=image.size();
         int m=image[0].size();
-        vector<vector<int>> vis(n,vector<int> (m,0));
+       
         int oldCol=image[sr][sc];
         queue<pair<int,int>> q;
         q.push({sr,sc});
-        vis[sr][sc]=1;
+        
         int delrow[4]={0,-1,0,1};
         int delcol[4]={-1,0,1,0};
         while(!q.empty()){
@@ -24,8 +24,8 @@ public:
             for(int i=0;i<4;i++){
                 int nrow=row+delrow[i];
                 int ncol=col+delcol[i];
-                if(ncol>=0 && ncol<m && nrow>=0 && nrow<n && !vis[nrow][ncol] && image[nrow][ncol]==oldCol){
-                    vis[nrow][ncol]=1;
+                if(ncol>=0 && ncol<m && nrow>=0 && nrow<n && image[nrow][ncol]==oldCol && image[nrow][ncol]!=newColor){
+                     image[nrow][ncol]=newColor;
                     q.push({nrow,ncol});
                 }
             }
